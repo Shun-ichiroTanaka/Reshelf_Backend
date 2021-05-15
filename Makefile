@@ -125,9 +125,13 @@ jwt:
 	docker-compose exec app php artisan make:controller AuthController
 	docker-compose exec app php artisan make:request UserRegisterRequest
 	docker-compose exec app php artisan make:resource User
+fortify:
+	docker-compose exec app composer require laravel/fortify
+	docker-compose exec app composer update
+	docker-compose exec app php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+	docker-compose exec app php artisan migrate
 facebook:
 	docker-compose exec app composer require laravel/socialite
-	docker-compose exec app php artisan make:migration add_facebook_id_column
 	docker-compose exec app php artisan make:controller FacebookController
 yarn-install:
 	@make yarn
