@@ -1,0 +1,10 @@
+body {
+    @apply m-0 p-0 antialiased;
+    font-family: proxima-nova, "Proxima Nova", "Noto Sans Japanese", -apple-system, system-ui, MyYuGothicM, YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 14px;
+    // color: var(--color);
+    // background-color: var(--fcfcfc);
+    @screen md {
+        @apply text-lg;
+    }
+  }
