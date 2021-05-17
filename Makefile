@@ -127,7 +127,6 @@ jwt:
 	docker-compose exec app php artisan make:resource User
 facebook:
 	docker-compose exec app composer require laravel/socialite
-	docker-compose exec app php artisan make:migration add_facebook_id_column
 	docker-compose exec app php artisan make:controller FacebookController
 yarn-install:
 	@make yarn
