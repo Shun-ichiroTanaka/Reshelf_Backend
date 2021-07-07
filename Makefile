@@ -118,7 +118,7 @@ sanctum:
 	docker-compose exec app php artisan make:controller Auth\\LoginController
 # laravel jwt 
 jwt:
-	docker-compose exec app composer require tymon/jwt-auth:1.0.1
+	docker-compose exec app composer require tymon/jwt-auth
 	docker-compose exec app composer update
 	docker-compose exec app php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 	docker-compose exec app php artisan jwt:secret
@@ -128,6 +128,7 @@ jwt:
 facebook:
 	docker-compose exec app composer require laravel/socialite
 	docker-compose exec app php artisan make:controller FacebookController
+	docker-compose exec app php artisan make:middleware FacebookMiddleware
 yarn-install:
 	@make yarn
 yarn-dev:
@@ -159,4 +160,10 @@ cors:
 	docker-compose exec app composer remove barryvdh/laravel-cors fruitcake/laravel-cors
 	docker-compose exec app composer require fruitcake/laravel-cors
 	docker-compose exec app php artisan vendor:publish --tag="cors"
+auth:
+	docker-compose exec app composer require laravel/ui
+	docker-compose exec app php artisan migrate
+route:
+	docker-compose exec app php artisan route:list
+
 
