@@ -165,5 +165,5 @@ auth:
 	docker-compose exec app php artisan migrate
 route:
 	docker-compose exec app php artisan route:list
-
-
+gomi:
+	git checkout . && git clean -df
