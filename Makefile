@@ -117,6 +117,7 @@ sanctum:
 	docker-compose exec app php artisan migrate:fresh
 	docker-compose exec app php artisan make:controller API\\Auth\\LoginController
 	docker-compose exec app php artisan make:controller API\\Auth\\RegisterController
+	docker-compose exec app php artisan make:controller API\\Auth\\UserController
 # laravel jwt 
 jwt:
 	docker-compose exec app composer require tymon/jwt-auth
