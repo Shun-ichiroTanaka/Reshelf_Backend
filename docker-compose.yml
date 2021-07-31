@@ -15,7 +15,7 @@ services:
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_DATABASE=${DB_NAME:-reshelf_laravel}
+      - DB_DATABASE=${DB_NAME:-laravel_db}
       - DB_USERNAME=${DB_USER:-phper}
       - DB_PASSWORD=${DB_PASS:-secret}
 
@@ -34,22 +34,11 @@ services:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
     ports:
-      - ${DB_PORT:-3306}:3306
+      - "4306:3306"
     volumes:
       - db-store:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=${DB_NAME:-reshelf_laravel}
+      - MYSQL_DATABASE=${DB_NAME:-laravel_db}
       - MYSQL_USER=${DB_USER:-phper}
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
-
-  pma:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      - PMA_HOST=db
-      - PMA_USER=phper
-      - PMA_PASSWORD=secret
-    ports:
-      - 8080:80
-    volumes:
-      - pma-session-store:/sessions
