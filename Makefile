@@ -70,6 +70,8 @@ app:
 	docker-compose exec app bash
 migrate:
 	docker-compose exec app php artisan migrate
+roll:
+	docker-compose exec app php artisan migrate:rollback
 fresh:
 	docker-compose exec app php artisan migrate:fresh --seed
 seed:
@@ -98,18 +100,6 @@ cache-clear:
 	docker-compose exec app composer clear-cache
 	@make optimize-clear
 	docker-compose exec app php artisan event:clear
-npm:
-	@make npm-install
-npm-install:
-	docker-compose exec web npm install
-npm-dev:
-	docker-compose exec web npm run dev
-npm-watch:
-	docker-compose exec web npm run watch
-npm-watch-poll:
-	docker-compose exec web npm run watch-poll
-npm-hot:
-	docker-compose exec web npm run hot
 # laravel sanctum (spa)
 sanctum:
 	docker-compose exec app composer require laravel/sanctum
@@ -118,15 +108,6 @@ sanctum:
 	docker-compose exec app php artisan make:controller API\\Auth\\LoginController
 	docker-compose exec app php artisan make:controller API\\Auth\\RegisterController
 	docker-compose exec app php artisan make:controller API\\Auth\\UserController
-# laravel jwt 
-jwt:
-	docker-compose exec app composer require tymon/jwt-auth
-	docker-compose exec app composer update
-	docker-compose exec app php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-	docker-compose exec app php artisan jwt:secret
-	docker-compose exec app php artisan make:controller AuthController
-	docker-compose exec app php artisan make:request UserRegisterRequest
-	docker-compose exec app php artisan make:resource User
 facebook:
 	docker-compose exec app composer require laravel/socialite
 	docker-compose exec app php artisan make:controller FacebookController
@@ -153,7 +134,7 @@ ide-helper:
 	docker-compose exec app php artisan ide-helper:meta
 	docker-compose exec app php artisan ide-helper:models --nowrite
 
-# nuxt laravel autu
+# nuxt laravel auth
 login-action:
 	docker-compose exec app php artisan make:controller LoginAction --invokable
 recreate-user-db:
@@ -169,3 +150,10 @@ route:
 	docker-compose exec app php artisan route:list
 gomi:
 	git checkout . && git clean -df
+post:
+	docker-compose exec app php artisan make:model Post -m
+	docker-compose exec app php artisan make:model Tag -m
+	docker-compose exec app php artisan make:migration create_post_tag_table --create=post_tag
+	docker-compose exec app php artisan make:resource PostResource
+	docker-compose exec app php artisan make:controller Api\\PostController -r
+	docker-compose exec app php artisan make:resource PostResource
