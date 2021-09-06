@@ -149,7 +149,8 @@ auth:
 route:
 	docker-compose exec app php artisan route:list
 gomi:
-	git checkout . && git clean -df
+	git checkout .
+	git clean -df
 post:
 	docker-compose exec app php artisan make:model Post -m
 	docker-compose exec app php artisan make:model Tag -m
