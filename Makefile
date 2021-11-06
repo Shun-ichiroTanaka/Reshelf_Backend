@@ -157,4 +157,3 @@ post:
 	docker-compose exec app php artisan make:migration create_post_tag_table --create=post_tag
 	docker-compose exec app php artisan make:resource PostResource
 	docker-compose exec app php artisan make:controller Api\\PostController -r
-	docker-compose exec app php artisan make:resource PostResource

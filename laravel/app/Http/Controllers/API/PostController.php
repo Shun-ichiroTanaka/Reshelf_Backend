@@ -78,8 +78,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+
         $post->delete();
 
-        return new PostResource($post);
+        // return new PostResource($post);
+        return response(null, 204);
     }
 }
