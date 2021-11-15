@@ -9,20 +9,11 @@ use Socialite;
 
 class AuthController extends Controller
 {
-
-
-    public function __construct()
-    {
-
-    }
-
-
-    public function SocialSignup($provider)
+    public function index($provider)
     {
         // Socialite will pick response data automatic
         $user = Socialite::driver($provider)->stateless()->user();
 
         return response()->json($user);
     }
-
 }
