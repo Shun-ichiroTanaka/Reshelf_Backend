@@ -22,6 +22,10 @@ Route::group(['prefix' => 'posts'], function () {
     Route::delete('/{post}', [PostController::class, 'destroy']);
 });
 
+// Social Auth
+Route::post('sociallogin/{provider}', 'Api/Auth/Social/SocialSignupController@index');
+Route::get('auth/{provider}/callback', 'Api/Auth/Social/FacebookLoginController@index')->where('provider', '.*');
+
 // ユーザー登録
 Route::post('/auth/register', [RegisterController::class, 'register']);
 // ログイン
