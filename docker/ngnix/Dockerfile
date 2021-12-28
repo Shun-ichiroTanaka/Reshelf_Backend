@@ -1,5 +1,5 @@
-FROM node:14.2-alpine as node
-FROM nginx:1.18-alpine
+FROM node:16-alpine as node
+FROM nginx:1.20-alpine
 SHELL ["/bin/ash", "-oeux", "pipefail", "-c"]
 
 ENV TZ=UTC
@@ -15,5 +15,6 @@ COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /opt /opt
 # nginx config file
 COPY ./docker/ngnix/default.conf /etc/nginx/conf.d/
+
 
 WORKDIR /work/laravel
