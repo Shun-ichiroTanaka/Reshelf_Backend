@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    public function __invoke(Request $request)
     {
         /** @var Illuminate\Validation\Validator $validator */
         $validator = Validator::make($request->all(), [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
-    public function login(Request $request)
+    public function __invoke(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -30,12 +30,5 @@ class LoginController extends Controller
         }
 
         return response()->json('User Not Found.', Response::HTTP_INTERNAL_SERVER_ERROR);
-    }
-
-    public function logout(Response $response)
-    {
-        Auth::guard('web')->logout();
-
-        return $this->apiResponse('Logout Success', [], Response::HTTP_OK);
     }
 }
