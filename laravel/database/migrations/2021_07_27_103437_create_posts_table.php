@@ -15,9 +15,9 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->integer('price')->nullable();
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->string('describe')->nullable();
             $table->unsignedbigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
