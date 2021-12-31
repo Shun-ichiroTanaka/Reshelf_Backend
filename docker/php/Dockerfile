@@ -1,6 +1,7 @@
 FROM php:8.1-fpm-bullseye
-SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
-
+RUN docker-php-ext-install pdo_mysql
+COPY ./docker/php/php.ini /usr/local/etc/php/
+ 
 # timezone environment
 ENV TZ=UTC \
   # locale
@@ -13,16 +14,11 @@ ENV TZ=UTC \
 
 COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update && \
-  apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  locale-gen en_US.UTF-8 && \
-  localedef -f UTF-8 -i en_US en_US.UTF-8 && \
-  mkdir /var/run/php-fpm && \
-  docker-php-ext-install intl pdo_mysql zip bcmath && \
-  composer config -g process-timeout 3600 && \
-  composer config -g repos.packagist composer https://packagist.org
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+      && php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+      && php composer-setup.php\
+      && php -r "unlink('composer-setup.php');" \
+      && mv composer.phar /usr/sbin/composer
 
 COPY ./docker/php/php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
