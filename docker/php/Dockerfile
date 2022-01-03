@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-bullseye
+FROM php:8.0-fpm-alpine
 RUN docker-php-ext-install pdo_mysql
 COPY ./docker/php/php.ini /usr/local/etc/php/
  
@@ -12,7 +12,7 @@ ENV TZ=UTC \
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
 
-COPY --from=composer:2.1 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
       && php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
