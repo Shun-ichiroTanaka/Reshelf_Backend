@@ -14,6 +14,6 @@ class IndexController extends Controller
      */
     public function __invoke(){
         return new PostResource(Post::all()->sortByDesc('created_at')
-        ->load(['user', 'likes', 'tags']));
+        ->load(['user']));
     }
 }
