@@ -18,6 +18,8 @@ class UserController extends Controller
 
         $request->user()->followings()->detach($user);
 
-        return ['name' => $name];
+        return response()->json([
+            'name' => $name
+        ]);
     }
 }

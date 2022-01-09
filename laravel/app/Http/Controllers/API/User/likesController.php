@@ -13,7 +13,7 @@ class UserController extends Controller
 
         $posts = $user->likes->sortByDesc('created_at');
 
-        return view('users.likes', [
+        return response()->json([
             'user' => $user,
             'posts' => $posts,
         ]);

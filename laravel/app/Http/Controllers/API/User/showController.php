@@ -13,9 +13,9 @@ class UserController extends Controller
 
         $posts = $user->posts->sortByDesc('created_at');
 
-        return view('users.show', [
+        return response()->json([
             'user' => $user,
-            'posts' => $posts,
+            'posts' => $posts
         ]);
     }
 }

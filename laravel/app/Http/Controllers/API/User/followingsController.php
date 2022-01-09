@@ -13,7 +13,7 @@ class UserController extends Controller
 
         $followings = $user->followings->sortByDesc('created_at');
 
-        return view('users.followings', [
+        return response()->json([
             'user' => $user,
             'followings' => $followings,
         ]);
