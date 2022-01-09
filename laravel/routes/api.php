@@ -10,6 +10,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', Api\Auth\LogoutController::class);
 });
 
+// user
+Route::group(['prefix' => 'users'],function () {
+    Route::get('/{name}', Api\User\ShowController::class);
+    Route::get('/{name}/likes', Api\User\likesController::class);
+    Route::get('/{name}/followings', Api\User\followingsController::class);
+    Route::get('/{name}/followers', Api\User\followersController::class);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::put('/{name}/follow', Api\User\followsController::class);
+        Route::delete('/{name}/follow', Api\User\unfollowsController::class);
+    });
+});
+
 // post
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', Api\Post\IndexController::class);
@@ -19,11 +32,10 @@ Route::group(['prefix' => 'posts'], function () {
     Route::delete('/{post}', Api\Post\DestroyController::class);
 });
 
+
 // Social Auth
 // Route::post('sociallogin/{provider}', 'Api/Auth/Social/SocialSignupController@index');
 // Route::get('auth/{provider}/callback', 'Api/Auth/Social/FacebookLoginController@index')->where('provider', '.*');
 
-// ユーザー登録
 Route::post('/auth/register', Api\Auth\RegisterController::class);
-// ログイン
 Route::post('/auth/login', Api\Auth\LoginController::class);
