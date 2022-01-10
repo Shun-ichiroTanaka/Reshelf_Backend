@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\User;
 use Illuminate\Http\Request;
-class UserController extends Controller
+class FollowsController extends Controller
 {
     public function __invoke(Request $request, string $name)
     {

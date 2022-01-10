@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\User;
 
-class UserController extends Controller
+class FollowersController extends Controller
 {
     public function __invoke(string $name)
     {
