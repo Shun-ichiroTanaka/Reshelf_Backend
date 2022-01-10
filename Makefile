@@ -67,7 +67,7 @@ log-db-watch:
 web:
 	docker-compose exec web ash
 app:
-	docker-compose exec app bash
+	docker-compose exec app sh
 migrate:
 	docker-compose exec app php artisan migrate
 roll:
