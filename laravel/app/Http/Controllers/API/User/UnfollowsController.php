@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\User;
 
 use App\User;
 use Illuminate\Http\Request;
+
 class UserController extends Controller
 {
     public function __invoke(Request $request, string $name)
@@ -16,7 +17,6 @@ class UserController extends Controller
         }
 
         $request->user()->followings()->detach($user);
-        $request->user()->followings()->attach($user);
 
         return response()->json([
             'name' => $name
