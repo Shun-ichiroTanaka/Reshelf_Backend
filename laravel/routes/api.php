@@ -13,6 +13,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // user
 Route::group(['prefix' => 'users'],function () {
     Route::get('/{name}', Api\User\ShowController::class);
+    Route::patch('/{name}', Api\User\UpdateController::class);
     Route::get('/{name}/likes', Api\User\LikesController::class);
     Route::get('/{name}/followings', Api\User\FollowingsController::class);
     Route::get('/{name}/followers', Api\User\FollowersController::class);
