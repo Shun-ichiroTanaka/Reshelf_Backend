@@ -18,15 +18,15 @@ class UpdateController extends Controller
     public function __invoke(Request $request, Post $post)
     {
         //set validation
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'title' => 'required',
+        //     'body' => 'required',
+        // ]);
 
         //response error validation
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 400);
+        // }
 
         //update to database
         $post->update([
