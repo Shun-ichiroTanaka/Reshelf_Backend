@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 class UnfollowsController extends Controller
 {
     public function __invoke(Request $request, string $name)

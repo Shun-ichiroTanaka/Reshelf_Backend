@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\User as UserResource;
 
 class ShowController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(string $name)
     {
-        return new UserResource($request->user());
+
+        $user = User::where('name', $name)->first()
+        ->load([
+            'post.user',
+            'post.likes',
+            // 'post.tags'
+        ]);
+
+        $post = $user->post->sortByDesc('created_at');
+
+        return response()->json([
+            'user' => $user,
+            'post' => $post,
+        ]);
     }
 }

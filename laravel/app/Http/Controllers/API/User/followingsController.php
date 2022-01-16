@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\User;
 
 class FollowingsController extends Controller
 {
