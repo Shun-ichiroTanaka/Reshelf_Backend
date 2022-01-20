@@ -23,7 +23,6 @@ class CreateCartsTable extends Migration
             ->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->integer('quantity');
             $table->timestamps();
         });
     }

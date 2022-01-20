@@ -9,6 +9,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', Api\Auth\LogoutController::class);
 
+    // cart
     Route::prefix('cart')->group(function(){
         Route::get('/', Api\Cart\IndexController::class);
         Route::post('add', Api\Cart\AddController::class);

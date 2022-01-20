@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+
+    /**
+     *  CartはPostとUserの中間Model
+    **/
+    protected $fillable = [
+        'user_id',
+        'post_id',
+    ];
 }

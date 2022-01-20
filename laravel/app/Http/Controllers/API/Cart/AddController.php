@@ -11,21 +11,17 @@ class AddController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $itemInCart = Cart::where('product_id', $request->product_id)
+        $itemInCart = Cart::where('post_id', $request->post_id)
         ->where('user_id', Auth::id())->first();
 
         if($itemInCart){
-            $itemInCart->quantity += $request->quantity;
             $itemInCart->save();
-
         } else {
             Cart::create([
                 'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity
+                'post_id' => $request->post_id,
             ]);
         }
-
-        return redirect()->route('user.cart.index');
+        // dd($request);
     }
 }
