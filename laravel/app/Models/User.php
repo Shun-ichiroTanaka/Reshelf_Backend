@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Post;
+use Laravel\Sanctum\HasApiTokens; // 追加
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // 追加
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -50,10 +51,17 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($token, new BareMail()));
     }
 
-    public function posts(): HasMany
+    // public function posts(): HasMany
+    // {
+    //     return $this->hasMany('App\Models\Post');
+    // }
+
+    public function posts(): BelongsToMany
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->belongsToMany(Post::class, 'carts')
+        ->withPivot(['id']);
     }
+
 
     public function followers(): BelongsToMany
     {

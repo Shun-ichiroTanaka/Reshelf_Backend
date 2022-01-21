@@ -18,9 +18,7 @@ class AddController extends Controller
 
         // 商品があれば
         if($itemInCart){
-            $itemInCart->quantity += $request->quantity;
             $itemInCart->save();
-
         } else {
             Cart::create([
                 'user_id' => Auth::id(), // ログインユーザー

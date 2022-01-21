@@ -18,9 +18,14 @@ class Post extends Model
         // 'describe',
     ];
 
-    public function user(): BelongsTo
+    // public function user(): BelongsTo
+    // {
+    //     return $this->belongsTo('App\Models\User');
+    // }
+    public function user(): BelongsToMany
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsToMany(User::class, 'carts')
+        ->withPivot(['id']);
     }
 
     public function likes(): BelongsToMany
