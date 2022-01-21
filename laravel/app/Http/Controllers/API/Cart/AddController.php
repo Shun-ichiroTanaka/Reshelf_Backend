@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class AddController extends Controller
 {
+    // カートの追加
     public function __invoke(Request $request)
     {
-        $itemInCart = Cart::where('product_id', $request->product_id)
+        // カートに商品があるか確認
+        $itemInCart = Cart::where('post_id', $request->post_id)
         ->where('user_id', Auth::id())->first();
 
+        // 商品があれば
         if($itemInCart){
             $itemInCart->quantity += $request->quantity;
             $itemInCart->save();
 
         } else {
             Cart::create([
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity
+                'user_id' => Auth::id(), // ログインユーザー
+                'post_id' => $request->post_id,
             ]);
         }
-
-        return redirect()->route('user.cart.index');
     }
 }
