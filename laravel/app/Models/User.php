@@ -46,10 +46,10 @@ class User extends Authenticatable
     ];
 
 
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new PasswordResetNotification($token, new BareMail()));
-    }
+    // public function sendPasswordResetNotification($token)
+    // {
+    //     $this->notify(new PasswordResetNotification($token, new BareMail()));
+    // }
 
     // public function posts(): HasMany
     // {
