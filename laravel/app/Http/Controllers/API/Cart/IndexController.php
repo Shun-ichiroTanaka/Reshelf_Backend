@@ -10,7 +10,7 @@ use App\Http\Resources\Cart as CartResource;
 
 class IndexController extends Controller
 {
-    // カート商品と合計金額を返す
+    // カート商品を返す
     public function __invoke()
     {
         $user = User::findOrFail(Auth::id());
