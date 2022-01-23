@@ -15,12 +15,8 @@ class IndexController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $posts = $user->posts;
-        $totalPrice = 0;
 
-        foreach($posts as $post){
-            $totalPrice += $post->price;
-        }
-
-        return new CartResource($posts, $totalPrice);
+        // dd($posts);
+        return new CartResource($posts);
     }
 }
