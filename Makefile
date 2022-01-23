@@ -74,6 +74,8 @@ roll:
 	docker-compose exec app php artisan migrate:rollback
 fresh:
 	docker-compose exec app php artisan migrate:fresh --seed
+refresh:
+	docker-compose exec app php artisan migrate:refresh --seed
 seed:
 	docker-compose exec app php artisan db:seed
 dacapo:
