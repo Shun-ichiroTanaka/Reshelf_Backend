@@ -1,12 +1,8 @@
 <?php
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('/user', Api\User\IndexController::class);
     Route::post('/logout', Api\Auth\LogoutController::class);
 
     // cart
