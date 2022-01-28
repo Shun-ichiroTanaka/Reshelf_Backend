@@ -3,8 +3,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', Api\User\IndexController::class);
-    Route::post('/logout', Api\Auth\LogoutController::class);
-
     // cart
     Route::prefix('cart')->group(function(){
         Route::get('/', Api\Cart\IndexController::class);
@@ -43,5 +41,6 @@ Route::group(['prefix' => 'posts'], function () {
 // Route::post('sociallogin/{provider}', 'API/Auth/Social/SocialSignupController@index');
 // Route::get('auth/{provider}/callback', 'API/Auth/Social/FacebookLoginController@index')->where('provider', '.*');
 
+Route::post('/logout', Api\Auth\LogoutController::class);
 Route::post('/auth/register', Api\Auth\RegisterController::class);
 Route::post('/auth/login', Api\Auth\LoginController::class);

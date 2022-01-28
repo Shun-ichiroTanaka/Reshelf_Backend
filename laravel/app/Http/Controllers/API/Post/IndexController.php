@@ -8,7 +8,7 @@ use App\Models\Post;
 class IndexController extends Controller
 {
     /**
-     * 本の情報とそれに付随する情報も渡す
+     * コースの情報とそれに付随する情報も渡す
      *
      * @return \Illuminate\Http\Response
      */
