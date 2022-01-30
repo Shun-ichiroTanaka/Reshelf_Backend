@@ -7,7 +7,7 @@ use App\Http\Resources\Post as PostResource;
 
 class User extends JsonResource {
 	/**
-	 * Transform the resource into an array.
+	 * リソースを配列へ変換
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return array
