@@ -18,11 +18,16 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable(); // いる？
-            $table->string('avatar')->nullable();
             $table->string('password');
-            $table->boolean('buyer_flag')->nullable(); // 購入者フラグ
-            $table->boolean('author_flag')->nullable(); // 著者フラグ
-            $table->string('fb_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('icon_img')->nullable();
+            $table->string('cover_img')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('youtube_url')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('linked_in_url')->nullable();
+            // $table->boolean('buyer_flag')->nullable(); // 購入者フラグ
+            // $table->boolean('author_flag')->nullable(); // 著者フラグ
             $table->rememberToken(); // いる？
             $table->timestamps();
         });

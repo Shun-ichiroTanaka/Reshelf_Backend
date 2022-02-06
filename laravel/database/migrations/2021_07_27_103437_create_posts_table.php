@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('body')->nullable();
             $table->string('describe')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->boolean('is_open')->default(0)->change();
             $table->unsignedbigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
