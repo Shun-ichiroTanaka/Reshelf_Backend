@@ -13,34 +13,34 @@ class CheckoutController extends Controller
     {
 
         $user = User::findOrFail(Auth::id());
-        $products = $user->products;
+        $posts = $user->posts;
 
         $lineItems = [];
-        foreach($products as $product){
-            $quantity = '';
-            $quantity = Stock::where('product_id', $product->id)->sum('quantity');
+        foreach($posts as $post){
+            // $quantity = '';
+            // $quantity = Stock::where('post_id', $post->id)->sum('quantity');
 
-            if($product->pivot->quantity > $quantity){
-                return redirect()->route('user.cart.index');
-            } else {
+            // if($post->pivot->quantity > $quantity){
+            //     return redirect()->route('user.cart.index');
+            // } else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'description' => $product->information,
-                    'amount' => $product->price,
+                    'name' => $post->name,
+                    'description' => $post->description,
+                    'amount' => $post->price,
                     'currency' => 'jpy',
-                    'quantity' => $product->pivot->quantity,
+                    // 'quantity' => $post->pivot->quantity,
                 ];
                 array_push($lineItems, $lineItem);
-            }
+            // }
         }
         // dd($lineItems);
-        foreach($products as $product){
-            Stock::create([
-                'product_id' => $product->id,
-                'type' => \Constant::PRODUCT_LIST['reduce'],
-                'quantity' => $product->pivot->quantity * -1
-            ]);
-        }
+        // foreach($posts as $post){
+        //     Stock::create([
+        //         'post_id' => $post->id,
+        //         'type' => \Constant::post_LIST['reduce'],
+        //         'quantity' => $post->pivot->quantity * -1
+        //     ]);
+        // }
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
@@ -54,7 +54,7 @@ class CheckoutController extends Controller
 
         $publicKey = env('STRIPE_PUBLIC_KEY');
 
-        return view('user.checkout',
-            compact('session', 'publicKey'));
+        // return view('user.checkout',
+        //     compact('session', 'publicKey'));
     }
 }
