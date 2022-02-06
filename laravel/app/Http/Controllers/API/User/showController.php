@@ -8,8 +8,17 @@ use App\Http\Resources\User as UserResource;
 
 class ShowController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(string $name)
     {
-        return new UserResource($request->user());
+        $user = UserResource::where('name', $name)->first()
+        ->load([
+            'posts.user',
+            // 'posts.likes',
+            // 'posts.tags'
+        ]);
+
+        $posts = $user->posts->sortByDesc('created_at');
+
+        return new UserResource($user,$posts);
     }
 }

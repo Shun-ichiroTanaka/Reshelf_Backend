@@ -13,7 +13,14 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(){
-        return new PostResource(Post::all()->sortByDesc('created_at')
-        ->load(['user']));
+
+        $posts = Post::all()->sortByDesc('created_at')
+            ->load([
+                'user',
+                // 'likes',
+                // 'tags'
+            ]);
+
+        return new PostResource($posts);
     }
 }
