@@ -16,13 +16,15 @@ class Post extends Model
         // 'price',
         'body',
         // 'describe',
+        // 'isOpen',
+        // 'thumbnail',
     ];
 
-    // public function user(): BelongsTo
-    // {
-    //     return $this->belongsTo('App\Models\User');
-    // }
-    public function user(): BelongsToMany
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function carts(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'carts')
         ->withPivot(['id']);

@@ -51,12 +51,12 @@ class User extends Authenticatable
     //     $this->notify(new PasswordResetNotification($token, new BareMail()));
     // }
 
-    // public function posts(): HasMany
-    // {
-    //     return $this->hasMany('App\Models\Post');
-    // }
+    public function posts(): HasMany
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 
-    public function posts(): BelongsToMany
+    public function carts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'carts')
         ->withPivot(['id']);
