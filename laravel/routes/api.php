@@ -35,6 +35,8 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('/{post}', Api\Post\ShowController::class);
     Route::patch('/{post}', Api\Post\UpdateController::class);
     Route::delete('/{post}', Api\Post\DestroyController::class);
+    Route::put('/{post}/like', Api\Post\LikeController::class);
+    Route::delete('/{post}/like', Api\Post\UnlikeController::class);
 });
 
 // Social Auth

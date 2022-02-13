@@ -35,6 +35,11 @@ class Post extends Model
         return $this->belongsToMany('App\Models\User', 'likes')->withTimestamps();
     }
 
+     /**
+     * コースにユーザーがすでにいいねをおしているかチェック
+     * アクセサ - liked_by_user
+     * @return boolean
+     */
     public function isLikedBy(?User $user): bool
     {
         return $user
@@ -42,6 +47,10 @@ class Post extends Model
             : false;
     }
 
+    /**
+     * アクセサ - likes_count
+     * @return integer
+     */
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
