@@ -21,13 +21,17 @@ class User extends JsonResource {
 			'description' => $this->description,
 			'icon_img' => $this->icon_img,
 			'cover_img' => $this->cover_img,
+
 			'twitter_url' => $this->twitter_url,
 			'youtube_url' => $this->youtube_url,
 			'facebook_url' => $this->facebook_url,
 			'linked_in_url' => $this->linked_in_url,
+
+            'posts' => PostResource::collection($this->posts),
+            'likes' => $this->likes,
+
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'posts' => PostResource::collection($this->posts)
 		];
 	}
 }
