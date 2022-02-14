@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'はむさんのオンラインスクール',
+            'name' => 'aaa',
+            'nickname' => 'はむさんのオンラインスクール',
             'email' => 'aaa@aaa.com',
             'password' => bcrypt('password'),
             'description' => '
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'bbb',
+            'nickname' => 'bbbのオンラインスクール',
             'email' => 'bbb@bbb.com',
             'password' => bcrypt('password'),
             'description' => '
@@ -73,6 +75,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'ccc',
+            'nickname' => 'cccのオンラインスクール',
             'email' => 'ccc@ccc.com',
             'password' => bcrypt('password'),
             'description' => '
@@ -101,6 +104,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'ddd',
+            'nickname' => 'dddさんのオンラインスクール',
             'email' => 'ddd@ddd.com',
             'password' => bcrypt('password'),
             'description' => '
