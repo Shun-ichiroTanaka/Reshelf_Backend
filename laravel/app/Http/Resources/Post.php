@@ -12,15 +12,19 @@ class Post extends JsonResource {
 		// 	'id' => $this->id,
         //     'title' => $this->title,
         //     'price' => $this->price,
-		// 	// 'describe' => $this->describe,
         //     'body' => $this->body,
-        //     // 'thumbnail' => $this->thumbnail,
-        //     // 'isOpen' => $this->isOpen,
+		// 	'describe' => $this->describe,
+        //     'thumbnail' => $this->thumbnail,
+
+        //     'is_open' => $this->is_open,
+        //     'is_free' => $this->is_free,
+
 		// 	'created_at' => $this->created_at->diffForHumans(),
 		// 	'updated_at' => $this->updated_at->diffForHumans(),
+
+        //     'like_count' => $this->likes->count(),
 		// 	'user' => $this->user,
-		// 	// 'like_count' => $this->likes->count(),
-		// 	'users' => new UserResource($this->user),
+		// 	// 'users' => new UserResource($this->user),
 		// ];
 	}
 }

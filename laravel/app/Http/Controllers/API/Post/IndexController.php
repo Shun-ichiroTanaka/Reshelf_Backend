@@ -17,7 +17,7 @@ class IndexController extends Controller
         $posts = Post::all()->sortByDesc('created_at')
             ->load([
                 'user',
-                // 'likes',
+                'likes',
                 // 'tags'
             ]);
 
