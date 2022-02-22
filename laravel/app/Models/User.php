@@ -62,7 +62,9 @@ class User extends Authenticatable
         ->withPivot(['id']);
     }
 
-
+    /**
+     * フォロー
+     */
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
@@ -72,20 +74,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
     }
-
-    /**
-     * いいねモデル
-     */
-    public function likes(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Post', 'likes')->withTimestamps();
-    }
-
     public function isFollowedBy(?User $user): bool
     {
         return $user
             ? (bool)$this->followers->where('id', $user->id)->count()
             : false;
+    }
+
+    /**
+     * いいね
+     */
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Post', 'likes')->withTimestamps();
     }
 
     public function getCountFollowersAttribute(): int

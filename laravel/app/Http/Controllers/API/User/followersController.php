@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 class FollowersController extends Controller
 {
+    /**
+     * フォロワー
+     */
     public function __invoke(string $name)
     {
         $user = User::where('name', $name)->first()

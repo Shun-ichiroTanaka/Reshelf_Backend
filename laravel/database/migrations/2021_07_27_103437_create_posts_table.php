@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->integer('price')->nullable();
             $table->text('body')->nullable();
             $table->string('describe')->nullable();
+            $table->text('curriculum')->nullable();
             $table->string('thumbnail')->nullable();
             $table->boolean('is_open')->default(0)->change();
             $table->boolean('is_free')->default(0)->change();

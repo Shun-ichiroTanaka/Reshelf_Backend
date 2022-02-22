@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 class UnlikeController extends Controller
 {
     /**
-     * いいね解除機能
-     *
-     * @return \Illuminate\Http\Response
+     * いいね解除
      */
     public function __invoke(Request $request, Post $post)
     {

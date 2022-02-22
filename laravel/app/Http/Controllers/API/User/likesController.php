@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 class LikesController extends Controller
 {
+    /**
+     * いいね
+     */
     public function __invoke(string $name)
     {
         $user = User::where('name', $name)->first()

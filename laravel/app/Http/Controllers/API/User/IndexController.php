@@ -10,8 +10,6 @@ class IndexController extends Controller
 {
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
     {
