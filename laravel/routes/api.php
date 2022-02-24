@@ -1,8 +1,30 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+// -------------
+// NOTE 認証が必要
+// -------------
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', Api\User\IndexController::class);
+
+    // user
+    Route::group(['prefix' => 'users'],function () {
+        Route::patch('/{name}', Api\User\UpdateController::class);
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::put('/{name}/follow', Api\User\FollowsController::class);
+            Route::delete('/{name}/follow', Api\User\UnfollowsController::class);
+        });
+    });
+
+    // post
+    Route::group(['prefix' => 'posts'], function () {
+        Route::post('/', Api\Post\StoreController::class);
+        Route::patch('/{post}', Api\Post\UpdateController::class);
+        Route::delete('/{post}', Api\Post\DestroyController::class);
+        Route::put('/{post}/like', Api\Post\LikeController::class);
+        Route::delete('/{post}/like', Api\Post\UnlikeController::class);
+    });
+
     // cart
     Route::prefix('cart')->group(function(){
         Route::get('/', Api\Cart\IndexController::class);
@@ -14,29 +36,22 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+
+// ---------------
+// NOTE 認証必要なし
+// ---------------
 // user
 Route::group(['prefix' => 'users'],function () {
     Route::get('/{name}', Api\User\ShowController::class);
-    Route::patch('/{name}', Api\User\UpdateController::class);
     Route::get('/{name}/likes', Api\User\LikesController::class);
     Route::get('/{name}/followings', Api\User\FollowingsController::class);
     Route::get('/{name}/followers', Api\User\FollowersController::class);
-
-    Route::middleware('auth:sanctum')->group(function () {
-        Route::put('/{name}/follow', Api\User\FollowsController::class);
-        Route::delete('/{name}/follow', Api\User\UnfollowsController::class);
-    });
 });
 
 // post
 Route::group(['prefix' => 'posts'], function () {
     Route::get('/', Api\Post\IndexController::class);
-    Route::post('/', Api\Post\StoreController::class);
     Route::get('/{post}', Api\Post\ShowController::class);
-    Route::patch('/{post}', Api\Post\UpdateController::class);
-    Route::delete('/{post}', Api\Post\DestroyController::class);
-    Route::put('/{post}/like', Api\Post\LikeController::class);
-    Route::delete('/{post}/like', Api\Post\UnlikeController::class);
 });
 
 // Social Auth
